@@ -140,4 +140,3 @@ sensor:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
       reference_resistance: 10kOhm
-
