@@ -1,0 +1,145 @@
+esphome:
+  name: beluga-battery-2
+  friendly_name: Beluga Battery 2
+
+esp32:
+  board: esp32-poe-iso
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+
+ota:
+  - platform: esphome
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk:
+    pin: GPIO17
+    mode: CLK_OUT
+  phy_addr: 0
+  power_pin:
+    number: GPIO12
+    ignore_strapping_warning: true
+
+i2c:
+  sda: GPIO13
+  scl: GPIO16
+  scan: true
+
+ads1115:
+  # Each Olimex board has an independent I²C bus, so both ADS1115 modules use 0x48.
+  - id: ads1115_0x48
+    address: 0x48
+
+sensor:
+  - platform: ads1115
+    ads1115_id: ads1115_0x48
+    multiplexer: A0_GND
+    gain: 4.096
+    name: "Beluga NTC 5 Voltage"
+    id: ntc5_voltage
+    update_interval: 5s
+
+
+  - platform: resistance
+    sensor: ntc5_voltage
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+    name: "Beluga NTC 5 Resistance"
+    id: ntc5_resistance
+
+
+  - platform: ntc
+    sensor: ntc5_resistance
+    name: "Beluga NTC 5 Temperature"
+    calibration:
+      b_constant: !secret ntc_beta_k
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+
+
+  - platform: ads1115
+    ads1115_id: ads1115_0x48
+    multiplexer: A1_GND
+    gain: 4.096
+    name: "Beluga NTC 6 Voltage"
+    id: ntc6_voltage
+    update_interval: 5s
+
+
+  - platform: resistance
+    sensor: ntc6_voltage
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+    name: "Beluga NTC 6 Resistance"
+    id: ntc6_resistance
+
+
+  - platform: ntc
+    sensor: ntc6_resistance
+    name: "Beluga NTC 6 Temperature"
+    calibration:
+      b_constant: !secret ntc_beta_k
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+
+
+  - platform: ads1115
+    ads1115_id: ads1115_0x48
+    multiplexer: A2_GND
+    gain: 4.096
+    name: "Beluga NTC 7 Voltage"
+    id: ntc7_voltage
+    update_interval: 5s
+
+
+  - platform: resistance
+    sensor: ntc7_voltage
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+    name: "Beluga NTC 7 Resistance"
+    id: ntc7_resistance
+
+
+  - platform: ntc
+    sensor: ntc7_resistance
+    name: "Beluga NTC 7 Temperature"
+    calibration:
+      b_constant: !secret ntc_beta_k
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
+
+
+  - platform: ads1115
+    ads1115_id: ads1115_0x48
+    multiplexer: A3_GND
+    gain: 4.096
+    name: "Beluga NTC 8 Voltage"
+    id: ntc8_voltage
+    update_interval: 5s
+
+  # Divider: 3.3 V -> fixed 10 kΩ -> ADC node -> NTC -> GND.
+
+  - platform: resistance
+    sensor: ntc8_voltage
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+    name: "Beluga NTC 8 Resistance"
+    id: ntc8_resistance
+
+  # Assumption for all NTCs: 10 kΩ at 25 °C. Verify against the NTC datasheet.
+  # Supply the datasheet beta value via ntc_beta_k in local secrets.yaml.
+
+  - platform: ntc
+    sensor: ntc8_resistance
+    name: "Beluga NTC 8 Temperature"
+    calibration:
+      b_constant: !secret ntc_beta_k
+      reference_temperature: 25°C
+      reference_resistance: 10kOhm
