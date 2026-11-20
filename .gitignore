@@ -1,0 +1,10 @@
+# macOS metadata
+.DS_Store
+
+# ESPHome local configuration and generated output
+secrets.yaml
+**/secrets.yaml
+.esphome/
+**/.esphome/
+build/
+**/build/
