@@ -30,12 +30,12 @@ ads1115:
     address: 0x49
 
 sensor:
-  # Raw divider-node voltages. One independent 10 kΩ + 10 kΩ branch per input.
+  # Raw divider-node voltages. One independent fixed-resistor + NTC branch per input.
   - platform: ads1115
     ads1115_id: ads1115_0x48
     multiplexer: A0_GND
     gain: 4.096
-    name: "Beluga NTC 1 Spannung"
+    name: "Beluga NTC 1 Voltage"
     id: ntc1_voltage
     update_interval: 5s
 
@@ -43,7 +43,7 @@ sensor:
     ads1115_id: ads1115_0x48
     multiplexer: A1_GND
     gain: 4.096
-    name: "Beluga NTC 2 Spannung"
+    name: "Beluga NTC 2 Voltage"
     id: ntc2_voltage
     update_interval: 5s
 
@@ -51,7 +51,7 @@ sensor:
     ads1115_id: ads1115_0x48
     multiplexer: A2_GND
     gain: 4.096
-    name: "Beluga NTC 3 Spannung"
+    name: "Beluga NTC 3 Voltage"
     id: ntc3_voltage
     update_interval: 5s
 
@@ -59,7 +59,7 @@ sensor:
     ads1115_id: ads1115_0x48
     multiplexer: A3_GND
     gain: 4.096
-    name: "Beluga NTC 4 Spannung"
+    name: "Beluga NTC 4 Voltage"
     id: ntc4_voltage
     update_interval: 5s
 
@@ -67,7 +67,7 @@ sensor:
     ads1115_id: ads1115_0x49
     multiplexer: A0_GND
     gain: 4.096
-    name: "Beluga NTC 5 Spannung"
+    name: "Beluga NTC 5 Voltage"
     id: ntc5_voltage
     update_interval: 5s
 
@@ -75,7 +75,7 @@ sensor:
     ads1115_id: ads1115_0x49
     multiplexer: A1_GND
     gain: 4.096
-    name: "Beluga NTC 6 Spannung"
+    name: "Beluga NTC 6 Voltage"
     id: ntc6_voltage
     update_interval: 5s
 
@@ -83,7 +83,7 @@ sensor:
     ads1115_id: ads1115_0x49
     multiplexer: A2_GND
     gain: 4.096
-    name: "Beluga NTC 7 Spannung"
+    name: "Beluga NTC 7 Voltage"
     id: ntc7_voltage
     update_interval: 5s
 
@@ -91,7 +91,7 @@ sensor:
     ads1115_id: ads1115_0x49
     multiplexer: A3_GND
     gain: 4.096
-    name: "Beluga NTC 8 Spannung"
+    name: "Beluga NTC 8 Voltage"
     id: ntc8_voltage
     update_interval: 5s
 
@@ -100,61 +100,63 @@ sensor:
     sensor: ntc1_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 1 Widerstand"
+    name: "Beluga NTC 1 Resistance"
     id: ntc1_resistance
 
   - platform: resistance
     sensor: ntc2_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 2 Widerstand"
+    name: "Beluga NTC 2 Resistance"
     id: ntc2_resistance
 
   - platform: resistance
     sensor: ntc3_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 3 Widerstand"
+    name: "Beluga NTC 3 Resistance"
     id: ntc3_resistance
 
   - platform: resistance
     sensor: ntc4_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 4 Widerstand"
+    name: "Beluga NTC 4 Resistance"
     id: ntc4_resistance
 
   - platform: resistance
     sensor: ntc5_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 5 Widerstand"
+    name: "Beluga NTC 5 Resistance"
     id: ntc5_resistance
 
   - platform: resistance
     sensor: ntc6_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 6 Widerstand"
+    name: "Beluga NTC 6 Resistance"
     id: ntc6_resistance
 
   - platform: resistance
     sensor: ntc7_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 7 Widerstand"
+    name: "Beluga NTC 7 Resistance"
     id: ntc7_resistance
 
   - platform: resistance
     sensor: ntc8_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
-    name: "Beluga NTC 8 Widerstand"
+    name: "Beluga NTC 8 Resistance"
     id: ntc8_resistance
 
+  # Assumption for all NTCs: 10 kΩ at 25 °C. Verify against the NTC datasheet.
+  # Supply the datasheet beta value via ntc_beta_k in local secrets.yaml.
   - platform: ntc
     sensor: ntc1_resistance
-    name: "Beluga NTC 1 Temperatur"
+    name: "Beluga NTC 1 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -162,7 +164,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc2_resistance
-    name: "Beluga NTC 2 Temperatur"
+    name: "Beluga NTC 2 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -170,7 +172,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc3_resistance
-    name: "Beluga NTC 3 Temperatur"
+    name: "Beluga NTC 3 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -178,7 +180,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc4_resistance
-    name: "Beluga NTC 4 Temperatur"
+    name: "Beluga NTC 4 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -186,7 +188,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc5_resistance
-    name: "Beluga NTC 5 Temperatur"
+    name: "Beluga NTC 5 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -194,7 +196,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc6_resistance
-    name: "Beluga NTC 6 Temperatur"
+    name: "Beluga NTC 6 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -202,7 +204,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc7_resistance
-    name: "Beluga NTC 7 Temperatur"
+    name: "Beluga NTC 7 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
@@ -210,7 +212,7 @@ sensor:
 
   - platform: ntc
     sensor: ntc8_resistance
-    name: "Beluga NTC 8 Temperatur"
+    name: "Beluga NTC 8 Temperature"
     calibration:
       b_constant: !secret ntc_beta_k
       reference_temperature: 25°C
