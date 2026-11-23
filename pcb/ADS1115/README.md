@@ -2,6 +2,10 @@
 
 This folder contains a project-local KiCad symbol and footprint for the Soldered 333095 ADS1115 breakout module, hardware revision V1.1.1.
 
+## Role in the system
+
+The KiCad project is one carrier-board design for one Olimex ESP32-POE-ISO-EA and one ADS1115 module. Build two copies for the complete system. Each board has its own I²C bus (SDA GPIO13, SCL GPIO16), so both ADS1115 modules use address `0x48`. Board 1 serves NTC 1–4; board 2 serves NTC 5–8. See the [software guide](../../software/README.md) for the channel map and ESPHome files.
+
 ## Library files
 
 - `Beluga_Battery.kicad_sym` — schematic symbol.

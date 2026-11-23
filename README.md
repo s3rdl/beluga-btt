@@ -4,12 +4,13 @@ ESPHome-based monitor for eight independent NTC temperature channels.
 
 ## Hardware
 
-- Olimex **ESP32-POE-ISO-EA** (ESP32-WROOM-32UE, 4 MB flash, external antenna)
-- Ethernet with IEEE 802.3af PoE; ESPHome is configured for wired Ethernet
-- Two ADS1115 ADCs at I²C addresses `0x48` and `0x49`
-- I²C on the Olimex UEXT pins: SDA GPIO13, SCL GPIO16
+- Two Olimex **ESP32-POE-ISO-EA** boards (ESP32-WROOM-32UE, 4 MB flash, external antenna), each with Ethernet/IEEE 802.3af PoE
+- One Soldered ADS1115 module per Olimex board, connected to that board's UEXT I²C bus
+- Both ADS1115 modules use address `0x48`; the address is reused because the boards have separate I²C buses
+- I²C on each Olimex UEXT: SDA GPIO13, SCL GPIO16
+- Four NTC channels per board, for eight channels total
 - Eight independent dividers: `3.3 V → 10 kΩ fixed resistor → ADC node → NTC → GND`
 
-See the [software guide](software/README.md) and [wiring diagram](assets/battery-temperature-wiring.svg).
+See the [software guide](software/README.md), [wiring diagram](assets/battery-temperature-wiring.svg), and [KiCad carrier-board project](pcb/ADS1115/README.md). The KiCad design represents one node; use two identical carrier boards for the complete eight-channel system.
 
 The NTC calibration currently assumes **10 kΩ at 25 °C**. Verify that reference and the beta value against the actual thermistor datasheet before relying on temperature readings. The exact board variant is selected; physical board revision and pin labels will be checked when it arrives.

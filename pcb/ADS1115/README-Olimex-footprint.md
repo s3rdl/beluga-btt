@@ -9,7 +9,7 @@ The outline and two 1x10 extension-header hole rows are transcribed from Olimex'
 - Board outline: 28.000 x 98.150 mm, including the small side notch.
 - Two header rows: 10 holes each, 2.54 mm pitch, 25.40 mm row spacing.
 - Finished hole nominal: 1.00 mm (based on the official plated drill file).
-- Pad numbering is currently provisional and unique for a single footprint: 1–10 on EXT1, 11–20 on EXT2, each read from the board's top end to its bottom end. The schematic symbol must preserve this mapping or explicitly revise it when the board pinout is added.
+- The footprint numbers EXT1 pads 1–10 and EXT2 pads 11–20, each read from the board's top end to its bottom end. The project schematic symbol uses the same numbering; confirm the physical header orientation and pin labels against the delivered EA board before manufacturing.
 
 Source: <https://github.com/OLIMEX/ESP32-POE-ISO/tree/master/HARDWARE/ESP32-PoE-ISO-Rev.N/Gerbers>
 
