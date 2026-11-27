@@ -1,4 +1,0 @@
-(sym_lib_table
-	(version 7)
-	(lib (name "Beluga_Battery")(type "KiCad")(uri "${KIPRJMOD}/Beluga_Battery.kicad_sym")(options "")(descr "Beluga battery measurement project symbols"))
-)
