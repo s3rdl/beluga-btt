@@ -1,0 +1,116 @@
+# Beluga Battery view, re-formatted as a sections view for the new section UI.
+# Same cards and entities; each sensor stack is its own grid section.
+title: "Beluga Battery"
+path: "beluga-battery"
+icon: "fas:ship"
+type: "sections"
+max_columns: 4
+sections:
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_beluga_ntc_1_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_beluga_ntc_1_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_beluga_ntc_2_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_beluga_ntc_2_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_beluga_ntc_3_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_beluga_ntc_3_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_beluga_ntc_4_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_beluga_ntc_4_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_3_beluga_ntc_9_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_3_beluga_ntc_9_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_3_beluga_ntc_10_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_3_beluga_ntc_10_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_3_beluga_ntc_11_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_3_beluga_ntc_11_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_battery_3_beluga_ntc_12_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_battery_3_beluga_ntc_12_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_betty_2_beluga_ntc_5_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_betty_2_beluga_ntc_5_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_betty_2_beluga_ntc_6_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_betty_2_beluga_ntc_6_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_betty_2_beluga_ntc_7_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_betty_2_beluga_ntc_7_temperature
+        days_to_show: 3
+  - type: "grid"
+    cards:
+      - type: "tile"
+        entity: sensor.beluga_betty_2_beluga_ntc_8_temperature
+        icon: "mdi:thermometer"
+      - type: "statistics-graph"
+        entities:
+          - sensor.beluga_betty_2_beluga_ntc_8_temperature
+        days_to_show: 3

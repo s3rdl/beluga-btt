@@ -1,42 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-labelledby="title description">
-<title id="title">Beluga BTT: two Olimex boards and eight NTC channels</title>
-<desc id="description">Two independent Olimex ESP32-POE-ISO-EA nodes each connect one ADS1115 at address 0x48 on their local I2C bus. Node 1 reads NTCs 1 through 4 on AIN0 through AIN3; node 2 reads NTCs 5 through 8 on AIN0 through AIN3. Every channel has an independent divider from 3.3 volts through a 10 kiloohm fixed resistor and an NTC to ground.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1180" viewBox="0 0 1400 1180" role="img" aria-labelledby="title description">
+<title id="title">Beluga BTT: three Olimex boards and twelve NTC channels</title>
+<desc id="description">Three independent Olimex ESP32-POE-ISO-EA nodes each connect one ADS1115 at address 0x48 on their local I2C bus. Node 1 reads NTCs 1 through 4, node 2 reads NTCs 5 through 8, and node 3 reads NTCs 9 through 12 on AIN0 through AIN3. Every channel has an independent divider from 3.3 volts through a 10 kiloohm fixed resistor and an NTC to ground.</desc>
 <defs><style>
 .bg{fill:#f8fafc}.panel{fill:#fff;stroke:#94a3b8;stroke-width:2;rx:16}.head{font:700 30px Arial,sans-serif;fill:#0f172a}.sub{font:16px Arial,sans-serif;fill:#475569}.label{font:700 18px Arial,sans-serif;fill:#0f172a}.small{font:15px Arial,sans-serif;fill:#334155}.tiny{font:13px Arial,sans-serif;fill:#475569}.wire{stroke:#2563eb;stroke-width:3;fill:none}.gnd{stroke:#475569;stroke-width:3;fill:none}.i2c{stroke:#7c3aed;stroke-width:3;fill:none}.node{fill:#0f172a}.chip{fill:#eef2ff;stroke:#4f46e5;stroke-width:2;rx:12}.res{fill:#fff7ed;stroke:#ea580c;stroke-width:2;rx:5}.ntc{fill:#ecfeff;stroke:#0891b2;stroke-width:2;rx:5}.note{fill:#fffbeb;stroke:#f59e0b;stroke-width:2;rx:12}
 </style></defs>
-<rect class="bg" width="1400" height="1000"/>
-<text class="head" x="50" y="56">Battery temperature monitoring – eight NTC channels</text>
-<text class="sub" x="50" y="86">Two Olimex ESP32-POE-ISO-EA nodes · PoE Ethernet · four channels per node</text>
+<rect class="bg" width="1400" height="1180"/>
+<text class="head" x="50" y="56">Battery temperature monitoring – twelve NTC channels</text>
+<text class="sub" x="50" y="86">Three Olimex ESP32-POE-ISO-EA nodes · PoE Ethernet · four channels per node</text>
 
-<!-- Node 1 and its local ADC -->
-<rect class="panel" x="50" y="125" width="380" height="165"/>
+<!-- Olimex node 1 and its local ADC -->
+<rect class="panel" x="50" y="125" width="380" height="155"/>
 <text class="label" x="78" y="165">Olimex node 1 · NTC 1–4</text>
 <text class="small" x="78" y="202">PoE Ethernet · SDA GPIO13 · SCL GPIO16</text>
-<text class="small" x="78" y="235">LAN8720: MDC 23 · MDIO 18 · CLK 17</text>
-<text class="tiny" x="78" y="265">PHY power GPIO12 · ESPHome node beluga-battery</text>
-<rect class="chip" x="500" y="135" width="360" height="145"/>
-<text class="label" x="525" y="170">ADS1115 · local address 0x48</text>
-<text class="small" x="525" y="203">VDD → 3V3 · GND → common GND</text>
-<text class="small" x="525" y="232">ADDR → GND · SDA/SCL → node 1</text>
-<text class="tiny" x="525" y="260">AIN0–AIN3 → NTC 1–4</text>
-<path class="i2c" d="M430 210 H500"/><text class="tiny" x="445" y="199" fill="#7c3aed">I²C</text>
+<text class="small" x="78" y="232">LAN8720: MDC 23 · MDIO 18 · CLK 17</text>
+<text class="tiny" x="78" y="260">PHY power GPIO12 · beluga-battery</text>
+<rect class="chip" x="500" y="130" width="360" height="145"/>
+<text class="label" x="525" y="165">ADS1115 · local address 0x48</text>
+<text class="small" x="525" y="198">VDD → 3V3 · GND → common GND</text>
+<text class="small" x="525" y="227">ADDR → GND · SDA/SCL → node 1</text>
+<text class="tiny" x="525" y="255">AIN0–AIN3 → NTC 1–4</text>
+<path class="i2c" d="M430 205 H500"/><text class="tiny" x="445" y="194" fill="#7c3aed">I²C</text>
 
-<!-- Node 2 and its local ADC -->
-<rect class="panel" x="50" y="315" width="380" height="165"/>
-<text class="label" x="78" y="355">Olimex node 2 · NTC 5–8</text>
-<text class="small" x="78" y="392">PoE Ethernet · SDA GPIO13 · SCL GPIO16</text>
-<text class="small" x="78" y="425">LAN8720: MDC 23 · MDIO 18 · CLK 17</text>
-<text class="tiny" x="78" y="455">PHY power GPIO12 · ESPHome node beluga-battery-2</text>
-<rect class="chip" x="500" y="325" width="360" height="145"/>
-<text class="label" x="525" y="360">ADS1115 · local address 0x48</text>
-<text class="small" x="525" y="393">VDD → 3V3 · GND → common GND</text>
-<text class="small" x="525" y="422">ADDR → GND · SDA/SCL → node 2</text>
-<text class="tiny" x="525" y="450">AIN0–AIN3 → NTC 5–8</text>
-<path class="i2c" d="M430 400 H500"/><text class="tiny" x="445" y="389" fill="#7c3aed">I²C</text>
+<!-- Olimex node 2 and its local ADC -->
+<rect class="panel" x="50" y="310" width="380" height="155"/>
+<text class="label" x="78" y="350">Olimex node 2 · NTC 5–8</text>
+<text class="small" x="78" y="387">PoE Ethernet · SDA GPIO13 · SCL GPIO16</text>
+<text class="small" x="78" y="417">LAN8720: MDC 23 · MDIO 18 · CLK 17</text>
+<text class="tiny" x="78" y="445">PHY power GPIO12 · beluga-battery-2</text>
+<rect class="chip" x="500" y="315" width="360" height="145"/>
+<text class="label" x="525" y="350">ADS1115 · local address 0x48</text>
+<text class="small" x="525" y="383">VDD → 3V3 · GND → common GND</text>
+<text class="small" x="525" y="412">ADDR → GND · SDA/SCL → node 2</text>
+<text class="tiny" x="525" y="440">AIN0–AIN3 → NTC 5–8</text>
+<path class="i2c" d="M430 390 H500"/><text class="tiny" x="445" y="379" fill="#7c3aed">I²C</text>
+
+<!-- Olimex node 3 and its local ADC -->
+<rect class="panel" x="50" y="495" width="380" height="155"/>
+<text class="label" x="78" y="535">Olimex node 3 · NTC 9–12</text>
+<text class="small" x="78" y="572">PoE Ethernet · SDA GPIO13 · SCL GPIO16</text>
+<text class="small" x="78" y="602">LAN8720: MDC 23 · MDIO 18 · CLK 17</text>
+<text class="tiny" x="78" y="630">PHY power GPIO12 · beluga-battery-3</text>
+<rect class="chip" x="500" y="500" width="360" height="145"/>
+<text class="label" x="525" y="535">ADS1115 · local address 0x48</text>
+<text class="small" x="525" y="568">VDD → 3V3 · GND → common GND</text>
+<text class="small" x="525" y="597">ADDR → GND · SDA/SCL → node 3</text>
+<text class="tiny" x="525" y="625">AIN0–AIN3 → NTC 9–12</text>
+<path class="i2c" d="M430 575 H500"/><text class="tiny" x="445" y="564" fill="#7c3aed">I²C</text>
 
 <!-- Divider -->
-<rect class="panel" x="900" y="125" width="450" height="565"/>
-<text class="label" x="930" y="165">One divider branch (repeat 8×)</text>
+<rect class="panel" x="900" y="125" width="450" height="650"/>
+<text class="label" x="930" y="165">One divider branch (repeat 12×)</text>
 <text class="small" x="930" y="198">3V3</text>
 <path class="wire" d="M965 192 V235"/><circle class="node" cx="965" cy="235" r="5"/>
 <rect class="res" x="935" y="235" width="60" height="42"/><text class="small" x="947" y="262">10 kΩ</text>
@@ -48,19 +61,31 @@
 <text class="tiny" x="930" y="481">Connect resistor–NTC node to AINx.</text>
 <text class="tiny" x="930" y="507">NTC connects the node to GND.</text>
 <line x1="930" y1="535" x2="1320" y2="535" stroke="#cbd5e1" stroke-width="2"/>
-<text class="small" x="930" y="570">Eight independent branches:</text>
+<text class="small" x="930" y="570">Twelve independent branches:</text>
 <text class="small" x="930" y="598">one resistor, NTC, and AIN per channel.</text>
-<text class="tiny" x="930" y="645">Assumed NTC: 10 kΩ at 25 °C; verify datasheet.</text>
+<text class="tiny" x="930" y="645">NTC: Semitec 103JT-100 · 10 kΩ at 25 °C</text>
+<text class="tiny" x="930" y="672">Beta: 3435 K · set locally as ntc_beta_k</text>
+<text class="tiny" x="930" y="722">Use electrically isolated NTC probes on battery cells.</text>
 
 <!-- Channel map -->
-<rect class="panel" x="50" y="535" width="810" height="300"/>
-<text class="label" x="78" y="575">Channel mapping · each ADS1115 is on a separate I²C bus</text>
-<text class="small" x="80" y="620">NTC 1 → node 1 · 0x48 · AIN0</text><text class="small" x="80" y="660">NTC 2 → node 1 · 0x48 · AIN1</text><text class="small" x="80" y="700">NTC 3 → node 1 · 0x48 · AIN2</text><text class="small" x="80" y="740">NTC 4 → node 1 · 0x48 · AIN3</text>
-<text class="small" x="420" y="620">NTC 5 → node 2 · 0x48 · AIN0</text><text class="small" x="420" y="660">NTC 6 → node 2 · 0x48 · AIN1</text><text class="small" x="420" y="700">NTC 7 → node 2 · 0x48 · AIN2</text><text class="small" x="420" y="740">NTC 8 → node 2 · 0x48 · AIN3</text>
-<text class="tiny" x="80" y="800">Both ADS1115 modules may use address 0x48 because the I²C buses are independent.</text>
+<rect class="panel" x="50" y="700" width="810" height="320"/>
+<text class="label" x="78" y="740">Channel map · each ADS1115 has a separate I²C bus</text>
+<text class="small" x="80" y="785">NTC 1 → node 1 · 0x48 · AIN0</text>
+<text class="small" x="80" y="825">NTC 2 → node 1 · 0x48 · AIN1</text>
+<text class="small" x="80" y="865">NTC 3 → node 1 · 0x48 · AIN2</text>
+<text class="small" x="80" y="905">NTC 4 → node 1 · 0x48 · AIN3</text>
+<text class="small" x="345" y="785">NTC 5 → node 2 · 0x48 · AIN0</text>
+<text class="small" x="345" y="825">NTC 6 → node 2 · 0x48 · AIN1</text>
+<text class="small" x="345" y="865">NTC 7 → node 2 · 0x48 · AIN2</text>
+<text class="small" x="345" y="905">NTC 8 → node 2 · 0x48 · AIN3</text>
+<text class="small" x="610" y="785">NTC 9 → node 3 · 0x48 · AIN0</text>
+<text class="small" x="610" y="825">NTC 10 → node 3 · 0x48 · AIN1</text>
+<text class="small" x="610" y="865">NTC 11 → node 3 · 0x48 · AIN2</text>
+<text class="small" x="610" y="905">NTC 12 → node 3 · 0x48 · AIN3</text>
+<text class="tiny" x="80" y="980">All three ADS1115 modules can use address 0x48 because their I²C buses are independent.</text>
 
-<rect class="note" x="50" y="865" width="1300" height="90"/>
-<text class="label" x="78" y="900">Notes</text>
-<text class="small" x="250" y="900">Electrically isolate NTC probes when attaching them to a battery.</text>
-<text class="small" x="250" y="930">Verify NTC beta and 10 kΩ at 25 °C against the datasheet before using temperatures.</text>
+<rect class="note" x="50" y="1050" width="1300" height="85"/>
+<text class="label" x="78" y="1085">Notes</text>
+<text class="small" x="250" y="1085">Each board has its own PoE Ethernet connection; the NTC divider is repeated for every measurement point.</text>
+<text class="small" x="250" y="1115">Temperature calibration uses the ordered Semitec 103JT-100 datasheet values.</text>
 </svg>

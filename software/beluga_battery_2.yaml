@@ -1,42 +1,41 @@
-esphome:
-  name: beluga-battery-2
-  friendly_name: Beluga Battery 2
+substitutions:
+  name: beluga-betty-2
+  friendly_name: Beluga Betty 2
 
+packages:
+  esphome.bluetooth-proxy: "github://esphome/bluetooth-proxies/olimex/olimex-esp32-poe-iso.yaml@main"
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+
+# Keep this API key in the local secrets.yaml, never in the repository.
+api:
+  encryption:
+    key: !secret beluga_betty_2_api_key
+
+# The package supplies Ethernet, logger, OTA, and Bluetooth proxy configuration.
+# This board keeps its local I2C bus for the ADS1115.
 esp32:
   board: esp32-poe-iso
   variant: esp32
   framework:
     type: esp-idf
 
-logger:
-
-api:
-
-ota:
-  - platform: esphome
-
-ethernet:
-  type: LAN8720
-  mdc_pin: GPIO23
-  mdio_pin: GPIO18
-  clk:
-    pin: GPIO17
-    mode: CLK_OUT
-  phy_addr: 0
-  power_pin:
-    number: GPIO12
-    ignore_strapping_warning: true
-
 i2c:
   sda: GPIO13
   scl: GPIO16
   scan: true
 
+# This board has its own I2C bus; its ADS1115 address can therefore be 0x48.
 ads1115:
-  # Each Olimex board has an independent I²C bus, so both ADS1115 modules use 0x48.
   - id: ads1115_0x48
     address: 0x48
 
+# Divider per channel: 3.3 V -> fixed 10 kOhm -> ADC node -> NTC -> GND.
+# NTC: Semitec 103JT-100, 10 kOhm at 25 C, beta 3435 K (datasheet).
+# Supply the NTC beta value through ntc_beta_k in the local secrets.yaml.
 sensor:
   - platform: ads1115
     ads1115_id: ads1115_0x48
@@ -124,17 +123,12 @@ sensor:
     id: ntc8_voltage
     update_interval: 5s
 
-  # Divider: 3.3 V -> fixed 10 kΩ -> ADC node -> NTC -> GND.
-
   - platform: resistance
     sensor: ntc8_voltage
     configuration: DOWNSTREAM
     resistor: 10kOhm
     name: "Beluga NTC 8 Resistance"
     id: ntc8_resistance
-
-  # Assumption for all NTCs: 10 kΩ at 25 °C. Verify against the NTC datasheet.
-  # Supply the datasheet beta value via ntc_beta_k in local secrets.yaml.
 
   - platform: ntc
     sensor: ntc8_resistance

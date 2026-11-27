@@ -1,6 +1,11 @@
-esphome:
+substitutions:
   name: beluga-battery
   friendly_name: Beluga Battery
+
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
 
 esp32:
   board: esp32-poe-iso
@@ -32,11 +37,14 @@ i2c:
   scl: GPIO16
   scan: true
 
+# This board has its own I²C bus; its ADS1115 address can therefore be 0x48.
 ads1115:
-  # Each Olimex board has an independent I²C bus, so both ADS1115 modules use 0x48.
   - id: ads1115_0x48
     address: 0x48
 
+# Divider per channel: 3.3 V -> fixed 10 kΩ -> ADC node -> NTC -> GND.
+# NTC: Semitec 103JT-100, 10 kΩ at 25 °C, beta 3435 K (datasheet).
+# Supply the NTC beta value through ntc_beta_k in the local secrets.yaml.
 sensor:
   - platform: ads1115
     ads1115_id: ads1115_0x48
